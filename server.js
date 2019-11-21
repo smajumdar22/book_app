@@ -27,12 +27,11 @@ function createSearch(req,res){
   if(req.body.search[1] === 'author') {url += `inauthor:${req.body.search[0]}`;}
 
   superagent.get(url)
-    .then(apiResponse =>{
-      apiResponse.body.items.map(bookResults => {
-        new Book(bookResults.volumeInfo);
-      });
-    })
-    .then(results => res.render('pages/searches', {searchResults: results}));
+    //map over the info from superagent, inside the items array, and create a new Book object
+    //from each result
+    .then(apiResponse => apiResponse.body.items.map(bookResult => new Book(bookResult.volumeInfo)))
+    //take that array of Book objects and pass it to the searches page when rendered
+    .then(results => res.render('pages/searches', {searchResults:results}));
 }
 function Book(info){
   console.log(info.title);
