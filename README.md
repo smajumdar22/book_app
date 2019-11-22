@@ -62,3 +62,7 @@ Start time: _____
 Finish time: _____
 
 Actual time needed to complete: _____
+
+Reference - https://stackoverflow.com/questions/27437229/how-to-make-flashing-text-in-css
+            https://unsplash.com/photos/cFUZ-6i83vs
+            https://stackoverflow.com/
