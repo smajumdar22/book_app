@@ -1,3 +1,52 @@
-body {
+/* body {
   background-color: lightskyblue;
+} */
+@import "compass/css3";
+
+/*Be sure to look into browser prefixes for keyframes and annimations*/
+.flash {
+   animation-name: flash;
+    animation-duration: 0.2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
+
+@keyframes flash {
+    from {color: rgb(47, 141, 218);}
+    to {color: black;}
+}
+body {
+  width: 100%;
+  margin: 0 auto;
+  background-color: lightskyblue;
+  background:url(./Images/fahrul-azmi-cFUZ-6i83vs-unsplash.jpg);
+  background-size: 1200px 1000px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input[type='radio']:checked:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color:rgb(81, 127, 165);
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+
+@media(min-width: 960px) {
+  main {
+    width: 800px;
+    margin: 0 auto;
+  }
+
+  fieldset, form {
+    width: 200px;
+  }
 }
