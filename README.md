@@ -2,6 +2,7 @@
 # Project Name: Book App
 
 **Author**: Shubham Majumdar and Tammy Ip
+
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
