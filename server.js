@@ -25,7 +25,7 @@ app.get('/add',(req,res)=>{
   res.render('pages/add');
 });
 app.post('/add', addNewBook);
-app.get('/book/:book_id',getOneBook);
+//app.get('/book/:book_id',getOneBook);
 app.get('*', (req, res) => res.status(404).send('This route does not exist'));
 
 // function getBooks(req, res) {
