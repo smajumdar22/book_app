@@ -9,30 +9,22 @@
     <link rel="stylesheet" href="./styles/layout.css">
     <link rel="stylesheet" href="./styles/modules.css">
 </head>
-<header>
-        <h1>BEST BOOKS</h1>
-    </header>
 <body>
+        <header>
+                <h2>BEST BOOKS</h2>
+            </header>
     <main>
-        <h4 class="flash">Search by title or author</h4>
-        <form action="/searches" method="post">
-            <input type="text" style="width: 400px;" name="search" placeholder="Enter a title or author" required>
-            <fieldset>
-                <div class="button">
-                    <label for="title">
-                        <span>Title</span>
-                        <input type="radio" name="search" value="title" required>
-                    </label>
-                </div>
-                <div class="button">
-                    <label for="author">
-                        <span>Author</span>
-                        <input type="radio" name="search" value="author" required>
-                    </label>
-                </div>
-            </fieldset>
-            <button type="submit">Seach for your Book</button>
-        </form>
+       <ul>
+           <% allBooks.forEach(books =>{ %>
+            <li> Books id: <%= books.id %></li>
+            <li> Books authors: <%= books.athors %></li>
+            <li> Books title: <%= books.title %></li>
+            <li> Books ISBN: <%= books.isbn %></li>
+            <li> Books image: <%= books.image_url %></li>
+            <li> Books Description: <%= books.description %></li>
+            <li> Books Shelf: <%=  %></li>
+           })
+       </ul>
     </main>
 </body>
 </html>
