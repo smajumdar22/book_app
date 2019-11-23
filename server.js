@@ -1,11 +1,10 @@
 'use strict';
 
-
 const express = require('express');
 const superagent = require('superagent');
+require('dotenv').config();
 const pg = require('pg');
 const client = new pg.Client(process.env.DATABASE_URL);
-require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,13 +14,13 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
 client.connect();
-client.on('error',err => console.error(err));
+client.on('error', err => console.error(err));
 
 
 
 app.get('/', getBooks);
 app.post('/searches', createSearch);
-app.get('/add',(req,res)=>{
+app.get('/add', (req, res) => {
   res.render('pages/add');
 });
 app.post('/add', addNewBook);
@@ -32,23 +31,23 @@ app.get('*', (req, res) => res.status(404).send('This route does not exist'));
 //   res.render('pages/index');
 // }
 
-function getBooks(req,res){
+function getBooks(req, res) {
   let sql = 'SELECT * FROM books;';
   return client.query(sql)
     .then(response => {
-      if(response.rowCount > 0){
-        res.redirect('index', {allBooks: response.rows});
+      if (response.rowCount > 0) {
+        res.render('pages/index', { allBooks: response.rows });
       }
     });
 }
 
-function addNewBook (req,res) {
+function addNewBook(req, res) {
   let r = req.body;
   let sql = 'INSERT INTO books(id, authors, title, isbn,image_url,description_book,bookshelf) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id';
-  let values = [r.id, r.authors, r.title, r.isbn,r.image_url,r.description_book,r.bookshelf];
+  let values = [r.id, r.authors, r.title, r.isbn, r.image_url, r.description_book, r.bookshelf];
   client.query(sql, values)
-    .then( result => {
-      if(result.rowCount > 0){
+    .then(result => {
+      if (result.rowCount > 0) {
         res.redirect('/');
       }
     });

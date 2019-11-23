@@ -9,13 +9,14 @@
     <link rel="stylesheet" href="./styles/layout.css">
     <link rel="stylesheet" href="./styles/modules.css">
 </head>
+
 <body>
-        <header>
-                <h2>BEST BOOKS</h2>
-            </header>
+    <header>
+        <h2>BEST BOOKS</h2>
+    </header>
     <main>
-       <ul>
-           <% allBooks.forEach(books =>{ %>
+        <ul>
+            <% allBooks.forEach(books =>{ %>
             <li> Books id: <%= books.id %></li>
             <li> Books authors: <%= books.athors %></li>
             <li> Books title: <%= books.title %></li>
@@ -23,8 +24,9 @@
             <li> Books image: <%= books.image_url %></li>
             <li> Books Description: <%= books.description_book %></li>
             <li> Books Shelf: <%=  %></li>
-           })
-       </ul>
+            <%})%>
+        </ul>
     </main>
 </body>
+
 </html>
