@@ -3,6 +3,9 @@
 
 const express = require('express');
 const superagent = require('superagent');
+const pg = require('pg');
+const client = new pg.Client(process.env.DATABASE_URL);
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,6 +13,7 @@ const PORT = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
+
 
 
 app.get('/', newSearch);

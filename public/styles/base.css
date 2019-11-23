@@ -21,7 +21,7 @@ body {
   width: 100%;
   margin: 0 auto;
   background-color: lightskyblue;
-  background:url(./Images/fahrul-azmi-cFUZ-6i83vs-unsplash.jpg);
+  /* background:url(./Images/fahrul-azmi-cFUZ-6i83vs-unsplash.jpg); */
   background-repeat: no-repeat;
   background-size: 1400px 1000px;
   font-family: Arial, Helvetica, sans-serif;
@@ -49,6 +49,14 @@ input[type=text]{
   background-color: rgb(132, 205, 223);
 
 }
+ form> input, .label {
+   box-sizing: border-box;
+   border:none;
+ }
+
+ .button{
+   border: 1px solid;
+ }
 
 @media(min-width: 960px) {
   main {

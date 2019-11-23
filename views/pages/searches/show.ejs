@@ -5,21 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/reset.css">
-    <link rel="stylesheet" href="./styles/base.css">
-    <link rel="stylesheet" href="./styles/layout.css">
-    <link rel="stylesheet" href="./styles/modules.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Document</title>
 </head>
-
+<header>
+    <h1>BEST BOOKS</h1>
+</header>
 <body>
     <main>
-        <% searchResults.forEach( book => { %>
-        <h3><%=book.title %></h3>
-        <% }) %>
+        <% if(searchResults) { %>
+            <% searchResults.forEach( book => { %>
+                <img src= <%=book.url; %> alt="<% book.title; %>">
+                <h3><%=book.title; %></h3>
+                <h3> <%= book.author; %></h3>
+                <p><%= book.description; %></p>
+                <% }); %>
+        <% } else {%>
+            <h3> No books with your search.Try again<a href ="./">Book Search</a></h3>
+            <% }; %>   
     </main>
 </body>
 
