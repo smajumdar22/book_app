@@ -22,7 +22,8 @@ body {
   margin: 0 auto;
   background-color: lightskyblue;
   background:url(./Images/fahrul-azmi-cFUZ-6i83vs-unsplash.jpg);
-  background-size: 1200px 1000px;
+  background-repeat: no-repeat;
+  background-size: 1400px 1000px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -38,6 +39,15 @@ input[type='radio']:checked:after {
   display: inline-block;
   visibility: visible;
   border: 2px solid white;
+}
+
+input[type=text]{
+  width: 100%;
+  padding: 12px 20px;
+  margin : 8px 0;
+  box-sizing: border-box;
+  background-color: rgb(132, 205, 223);
+
 }
 
 @media(min-width: 960px) {
