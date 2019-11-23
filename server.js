@@ -14,14 +14,27 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
+client.connect();
+client.on('error',err => console.error(err));
 
 
-app.get('/', newSearch);
+
+app.get('/', getBooks);
 app.post('/searches', createSearch);
 app.get('*', (req, res) => res.status(404).send('This route does not exist'));
 
-function newSearch(req, res) {
-  res.render('pages/index');
+// function getBooks(req, res) {
+//   res.render('pages/index');
+// }
+
+function getBooks(req,res){
+  let sql = 'SELECT * FROM books;';
+  return client.query(sql)
+    .then(response => {
+      if(response.rowCount > 0){
+        res.render('index', {allBooks: response.rows});
+      }
+    });
 }
 
 function createSearch(req, res) {
