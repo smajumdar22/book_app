@@ -6,7 +6,7 @@ CREATE TABLE books (
     title text,
     isbn varchar(30),
     image_url text,
-    description_book text
+    description_book text,
     bookshelf text
 );
 

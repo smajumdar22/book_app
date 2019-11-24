@@ -17,7 +17,8 @@ client.connect();
 client.on('error', err => console.error(err));
 
 app.get('/', getBooks);
-app.get('/new', newSearch);
+app.get('/new', getSearch);
+app.post('/new', addNewBook);
 app.post('/searches', createSearch);
 app.get('/add', (req, res) => {
   res.render('pages/add');
@@ -37,8 +38,11 @@ function getBooks(req, res) {
     });
 }
 
+function getSearch(req, res) {
+  res.render('pages/searches/new');
+}
 function newSearch(req, res) {
-  res.render('pages/new');
+  res.render('pages/searches/new');
 }
 
 function createSearch(req, res) {
@@ -54,8 +58,8 @@ function createSearch(req, res) {
 
 function addNewBook(req, res) {
   let r = req.body;
-  let sql = 'INSERT INTO books(id, authors, title, isbn,image_url,description_book,bookshelf) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id';
-  let values = [r.id, r.authors, r.title, r.isbn, r.image_url, r.description_book, r.bookshelf];
+  let sql = 'INSERT INTO books(authors, title, isbn,image_url,description_book,bookshelf) VALUES($1, $2, $3, $4, $5, $6) RETURNING id';
+  let values = [r.authors, r.title, r.isbn, r.image_url, r.description_book, r.bookshelf];
   client.query(sql, values)
     .then(result => {
       if (result.rowCount > 0) {
@@ -66,6 +70,7 @@ function addNewBook(req, res) {
 
 function Book(info) {
   console.log(info.title);
+  // console.log(info.author);
   this.title = info.title || 'No title available';
 }
 
