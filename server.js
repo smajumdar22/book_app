@@ -16,9 +16,8 @@ app.use(express.urlencoded({ extended: true }));
 client.connect();
 client.on('error', err => console.error(err));
 
-
-
 app.get('/', getBooks);
+app.get('/new', newSearch);
 app.post('/searches', createSearch);
 app.get('/add', (req, res) => {
   res.render('pages/add');
@@ -27,9 +26,6 @@ app.post('/add', addNewBook);
 //app.get('/book/:book_id',getOneBook);
 app.get('*', (req, res) => res.status(404).send('This route does not exist'));
 
-// function getBooks(req, res) {
-//   res.render('pages/index');
-// }
 
 function getBooks(req, res) {
   let sql = 'SELECT * FROM books;';
@@ -39,6 +35,21 @@ function getBooks(req, res) {
         res.render('pages/index', { allBooks: response.rows });
       }
     });
+}
+
+function newSearch(req, res) {
+  res.render('pages/new');
+}
+
+function createSearch(req, res) {
+  console.log(req.body.search);
+  let url = 'https://www.googleapis.com/books/v1/volumes?q=';
+  if (req.body.search[1] === 'title') { url += `intitle:${req.body.search[0]}`; }
+  if (req.body.search[1] === 'author') { url += `inauthor:${req.body.search[0]}`; }
+
+  superagent.get(url)
+    .then(apiResponse => apiResponse.body.items.map(bookResult => new Book(bookResult.volumeInfo)))
+    .then(results => res.render('pages/searches/show.ejs', { searchResults: results }));
 }
 
 function addNewBook(req, res) {
@@ -53,16 +64,6 @@ function addNewBook(req, res) {
     });
 }
 
-function createSearch(req, res) {
-  console.log(req.body.search);
-  let url = 'https://www.googleapis.com/books/v1/volumes?q=';
-  if (req.body.search[1] === 'title') { url += `intitle:${req.body.search[0]}`; }
-  if (req.body.search[1] === 'author') { url += `inauthor:${req.body.search[0]}`; }
-
-  superagent.get(url)
-    .then(apiResponse => apiResponse.body.items.map(bookResult => new Book(bookResult.volumeInfo)))
-    .then(results => res.render('pages/searches/show.ejs', { searchResults: results }));
-}
 function Book(info) {
   console.log(info.title);
   this.title = info.title || 'No title available';

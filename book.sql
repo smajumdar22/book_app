@@ -7,7 +7,7 @@ CREATE TABLE books (
     isbn varchar(30),
     image_url text,
     description_book text
-    -- bookshelf text
+    bookshelf text
 );
 
 INSERT INTO books (authors,title,isbn,image_url,description_book)
