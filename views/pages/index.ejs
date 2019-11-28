@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./styles/base.css">
     <link rel="stylesheet" href="./styles/layout.css">
     <link rel="stylesheet" href="./styles/modules.css">
+    <link rel="stylesheet" href="./styles/icon.css">
 </head>
 
 <body>
@@ -15,18 +16,32 @@
         <h2>BEST BOOKS</h2>
     </header>
     <main>
+        <div class="topnav">
+            <a href="#home" class="active"></a>
+            <div id="myLinks">
+                <a href="/">Home</a>
+                <a href="/new">Search Book</a>
+            </div>
+            <class="icon" onclick="menu()">
+                <span class="icon fa-bars"></span>
+                </a>
+        </div>
+
         <ul>
             <% allBooks.forEach(books =>{ %>
-            <li> Books id: <%= books.id %></li>
-            <li> Books authors: <%= books.athors %></li>
+            <li class='hide'> Books id: <%= books.id %></li>
+            <li> Books authors: <%= books.authors %></li>
             <li> Books title: <%= books.title %></li>
-            <li> Books ISBN: <%= books.isbn %></li>
+            <li class='hide'> Books ISBN: <%= books.isbn %></li>
             <img src="<%= books.image_url %>">
-            <li> Books Description: <%= books.description_book %></li>
+            <li class='hide'> Books Description: <%= books.description_book %></li>
             <li> Books Shelf: <%=  %></li>
-            <%})%>
+            <!-- <button onclick="myFunction()">View Details</button> -->
+            <button><a href="/books/<%= books.id %>">View Details</a></button>
+            <%});%>
         </ul>
     </main>
 </body>
+
 
 </html>

@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS books;
 
 CREATE TABLE books (
     id SERIAL PRIMARY KEY,
-    authors VARCHAR(80),
+    authors text,
     title text,
     isbn varchar(30),
     image_url text,

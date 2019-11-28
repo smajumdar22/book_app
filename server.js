@@ -18,14 +18,16 @@ client.on('error', err => console.error(err));
 
 app.get('/', getBooks);
 app.get('/new', getSearch);
-app.post('/new', addNewBook);
+app.post('/add', addNewBook);
 app.post('/searches', createSearch);
 app.get('/add', (req, res) => {
   res.render('pages/add');
 });
 app.post('/add', addNewBook);
 //app.get('/book/:book_id',getOneBook);
+app.get('/books/:book_id', getOneBook);
 app.get('*', (req, res) => res.status(404).send('This route does not exist'));
+
 
 
 function getBooks(req, res) {
@@ -47,7 +49,7 @@ function newSearch(req, res) {
 
 function createSearch(req, res) {
   console.log(req.body.search);
-  let url = 'https://www.googleapis.com/books/v1/volumes?q=';
+  let url = 'https://www.googleapis.com/bcooks/v1/volumes?q=';
   if (req.body.search[1] === 'title') { url += `intitle:${req.body.search[0]}`; }
   if (req.body.search[1] === 'author') { url += `inauthor:${req.body.search[0]}`; }
 
@@ -74,5 +76,26 @@ function Book(info) {
   this.title = info.title || 'No title available';
 }
 
-app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+function getOneBook(req, res) {
+  // console.log(req.params.task_id);
+  let sql = 'SELECT * FROM books WHERE id=$1;';
+  // let id = [req.params.task_id]
+  return client.query(sql, [req.params.book_id])
+    .then(result => {
+      if (result.rowCount > 0) {
+        console.log('result', result.rows);
+        res.render('pages/searches/details', { bookDetail: result.rows });
+      }
+    });
+}
 
+function menu() {
+  var x = document.getElementById('myLinks');
+  if (x.style.display === 'block') {
+    x.style.display = 'none';
+  } else {
+    x.style.display = 'block';
+  }
+}
+
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));

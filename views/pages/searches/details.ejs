@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+  <p><a href="/">Home</a></p>
+  <h1>This is the Details Page</h1>
+  <ul>
+    <% bookDetail.forEach( book => { %>
+    <li>id : <%= book.id %></li>
+    <li>Description: <%= book.description_book%></li>
+    <form action="/add/<%=book.id%>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="hidden" name="id" value="<%= book.id %>">
+      <button type="submit">Delete Book</button>
+    </form>
+    <button class="edit-button">Edit Details</button>
+    <section class="hide-me">
+      <%- include('../../layout/form', {formAction: 'update', book: book}) %>
+    </section>
+    <% }) %>
+  </ul>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="/app.js"></script>
+</body>
+
+</html>
