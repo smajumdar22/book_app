@@ -53,15 +53,25 @@ Finish time: 9:30pm
 
 Actual time needed to complete: 45 mins
 
-Number and name of feature: ________________________________
+Number and name of feature: Display saved books on homepage
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 1 hr
 
-Start time: _____
+Start time: 1pm
 
-Finish time: _____
+Finish time: 3pm
 
-Actual time needed to complete: _____
+Actual time needed to complete: 2 hrs
+
+Number and name of feature: View, edit and add additional details on each book
+
+Estimate of time needed to complete: 1 hr
+
+Start time: 6pm
+
+Finish time: 8pm
+
+Actual time needed to complete: 2 hrs
 
 Reference - https://stackoverflow.com/questions/27437229/how-to-make-flashing-text-in-css
             https://unsplash.com/photos/cFUZ-6i83vs
