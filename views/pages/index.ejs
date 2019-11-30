@@ -29,15 +29,15 @@
 
         <ul>
             <% allBooks.forEach(books =>{ %>
-            <li class='hide'> Books id: <%= books.id %></li>
-            <li> Books authors: <%= books.authors %></li>
-            <li> Books title: <%= books.title %></li>
-            <li class='hide'> Books ISBN: <%= books.isbn %></li>
+            <p> Books title: <%= books.title %></p>
             <img src="<%= books.image_url %>">
-            <li class='hide'> Books Description: <%= books.description_book %></li>
-            <li> Books Shelf: <%=  %></li>
-            <!-- <button onclick="myFunction()">View Details</button> -->
+            <p class='hide'> Books id: <%= books.id %></p>
+            <p> Books authors: <%= books.authors %></p>
+            <p> Books ISBN: <%= books.isbn %></p>
             <button><a href="/books/<%= books.id %>">View Details</a></button>
+            <p class='hide'> Books Description: <%= books.description_book %></p>
+            <!-- <li> Books Shelf: <%=  %></li> -->
+            <!-- <button onclick="myFunction()">View Details</button> -->
             <%});%>
         </ul>
     </main>

@@ -20,7 +20,7 @@
 body {
   width: 100%;
   margin: 0 auto;
-  background-color: lightskyblue;
+  background-color: rgb(174, 167, 167);
   /* background:url(./Images/fahrul-azmi-cFUZ-6i83vs-unsplash.jpg); */
   background-repeat: no-repeat;
   background-size: 1400px 1000px;
@@ -67,4 +67,25 @@ input[type=text]{
   fieldset, form {
     width: 200px;
   }
+}
+
+h2{
+  font-size: x-large;
+}
+
+li{
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  border: thick;
+}
+
+img{
+  margin: auto;
+  width: 30%;
+  padding: 20px;
+}
+
+button{
+  font-size: medium;
 }

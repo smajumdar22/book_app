@@ -7,6 +7,7 @@
   <ul>
     <% bookDetail.forEach( book => { %>
     <li>id : <%= book.id %></li>
+    <li>Title : <%= book.title %></li>
     <li>Description: <%= book.description_book%></li>
     <form action="/add/<%=book.id%>" method="post">
       <input type="hidden" name="_method" value="delete">
